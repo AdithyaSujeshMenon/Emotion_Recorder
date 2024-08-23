@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Emotion Meter</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="graph-container">
+    <div class="half-donut">
+        <div class="slice">
+             <i class="fa-regular fa-face-grimace"></i>
+        </div>
+        <div class="slice">
+            <i class="fa-regular fa-face-frown"></i>
+        </div>
+        <div class="slice">
+            <i class="fa-regular fa-face-meh"></i>
+        </div>
+        <div class="slice">
+            <i class="fa-regular fa-face-smile"></i>
+        </div>
+        <div class="slice">
+            <i class="fa-regular fa-face-grin-hearts"></i>
+        </div>
+    </div>
+    <div class="marker"></div>
+</div>
+
+<div class="form">
+    <input type="range" value="0" step="0.1" min="0" max="5" id="range" />
+    <p id="emotion-text"></p>
+    <button id="submit-emotion" style="display:none;">Submit Emotion</button>
+    <input type="text" id="emotion-reason" placeholder="Enter reason" style="display:none;"/>
+    <button id="submit-reason" style="display:none;">Submit Reason</button>
+</div>
+
+<div id="log-container" style="display:none;">
+    <div id="log-header">
+        <h3>Emotion Log</h3>
+        <button id="close-log">Close</button>
+    </div>
+    <ul id="emotion-log"></ul>
+    <button id="remove-all" style="display:none;">Remove All</button>
+</div>
+
+<div id="feedback-message" style="display:none;"></div>
+
+<script src="./script.js"></script>
+</body>
+</html>

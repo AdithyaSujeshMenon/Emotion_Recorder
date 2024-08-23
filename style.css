@@ -1,0 +1,315 @@
+/* General Body Styling */
+body {
+  background: #262638;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  height: auto;
+  box-sizing: border-box;
+  gap: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+/* Graph Container Styling */
+.graph-container {
+  --size: min(20rem, 90vw);
+  --stroke-size: calc(var(--size) / 5);
+  --rating: 0;
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  animation: 1s animateRating linear;
+}
+
+.graph-container *,
+.graph-container *::before,
+.graph-container *::after {
+  box-sizing: border-box;
+}
+
+/* Half Donut Styling */
+.half-donut {
+  margin-top: 10px;
+  width: var(--size);
+  height: calc(var(--size) / 2);
+  border-radius: var(--size) var(--size) 0 0;
+  position: relative;
+  overflow: hidden;
+  filter: drop-shadow(0 0 0.3rem #0005);
+}
+
+/* Slice Styling */
+.slice {
+  --stroke-color: #000;
+  --rotate: 0deg;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--size) var(--size) 0 0;
+  border: var(--stroke-size) solid var(--stroke-color);
+  box-sizing: border-box;
+  border-bottom: none;
+  transform-origin: 50% 100%;
+  background: #0000;
+  transform: rotate(calc(var(--rotate)));
+}
+
+.slice .fa-regular {
+  font-size: calc(var(--size) / 10);
+  color: #000;
+  position: absolute;
+  left: calc(var(--size) / -8);
+  top: calc(var(--size) / 8);
+  --emo-rotate: 90deg;
+  transform: rotate(var(--emo-rotate));
+}
+
+.slice:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+/* Slice Colour and Rotation */
+.slice:nth-child(1) {
+  --stroke-color: #d72e2c;
+  --rotate: calc(36deg * (1 - 1));
+}
+
+.slice:nth-child(1) .fa-regular {
+  --emo-rotate: calc(-36deg * (1 - 1));
+}
+
+.slice:nth-child(2) {
+  --stroke-color: #ff6259;
+  --rotate: calc(36deg * (2 - 1));
+}
+
+.slice:nth-child(2) .fa-regular {
+  --emo-rotate: calc(-36deg * (2 - 1));
+}
+
+.slice:nth-child(3) {
+  --stroke-color: #f19c4b;
+  --rotate: calc(36deg * (3 - 1));
+}
+
+.slice:nth-child(3) .fa-regular {
+  --emo-rotate: calc(-36deg * (3 - 1));
+}
+
+.slice:nth-child(4) {
+  --stroke-color: #68ca6f;
+  --rotate: calc(36deg * (4 - 1));
+}
+
+.slice:nth-child(4) .fa-regular {
+  --emo-rotate: calc(-36deg * (4 - 1));
+}
+
+.slice:nth-child(5) {
+  --stroke-color: #509d55;
+  --rotate: calc(36deg * (5 - 1));
+}
+
+.slice:nth-child(5) .fa-regular {
+  --emo-rotate: calc(-36deg * (5 - 1));
+}
+
+/* Marker Styling */
+.marker {
+  position: absolute;
+  z-index: 1;
+  --round-size: calc(var(--size) / 10);
+  --round-o-size: calc(var(--round-size) * 0.32);
+  width: var(--round-size);
+  height: var(--round-size);
+  left: 50%;
+  bottom: 0;
+  border: var(--round-o-size) solid #fff;
+  border-radius: 50%;
+  --turn: calc(45deg + (36 * calc(var(--rating) * 1deg)));
+  transform: translate(-50%, 50%) rotate(var(--turn));
+  transform-origin: 50% 50%;
+  transition: 0.2s linear;
+}
+
+.marker::before {
+  content: "";
+  position: absolute;
+  border: calc(var(--round-size) / 3) solid transparent;
+  border-right: calc(var(--size) * 0.4) solid #FFF;
+  left: 0%;
+  bottom: 0;
+  transform: translate(-100%, 50%) rotate(-45deg);
+  transform-origin: 100% 50%;
+  filter: drop-shadow(calc(var(--round-size) / -10) 0 0.2rem #0008);
+}
+
+/* Animation for Rating */
+@keyframes animateRating {
+  50% {
+    --rating: 5;
+  }
+}
+
+/* Range Input Styling */
+#range {
+  -webkit-appearance: none;
+  width: 100%;
+  max-width: 20rem;
+  height: 0.5rem;
+  background: #90CAF9;
+  outline: none;
+  opacity: 0.7;
+  border-radius: 0.5rem;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  margin: 1rem auto;
+}
+
+#range:hover {
+  opacity: 1;
+}
+
+#range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #2962FF;
+  border: 0.5rem solid #FFF;
+  cursor: pointer;
+}
+
+#range::-moz-range-thumb {
+  width: 2rem;
+  height: 2rem;
+  background: #2962FF;
+  cursor: pointer;
+}
+
+/* Emotion Text Styling */
+#emotion-text {
+  color: #fff;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* Button Styling */
+#submit-emotion,
+#submit-reason,
+#remove-all,
+#close-log,
+.remove-emotion {
+  padding: 0.5rem 1rem;
+  background-color: #2962FF;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 16px;
+  max-width: 100%;
+}
+
+#submit-emotion,
+#submit-reason,
+#remove-all,
+#close-log {
+  display: block;
+  margin: 1rem auto;
+}
+
+#close-log {
+  background-color: #FF1744;
+}
+
+/* Emotion Reason Input Styling */
+#emotion-reason {
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 20rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+/* Log Container Styling */
+#log-container {
+  background: #333;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem 0;
+  box-sizing: border-box;
+}
+
+/* Log Header Styling */
+#log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Emotion Log Styling */
+#emotion-log {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#emotion-log li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  background: #444;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+/* Remove Emotion Button Styling */
+.remove-emotion {
+  margin-left: 1rem;
+}
+
+/* Remove All Button Styling */
+#remove-all {
+  display: block;
+  margin: 2rem auto 0 auto;
+}
+
+/* Feedback Message Styling */
+#feedback-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  z-index: 1000;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+/* Form Styling */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 20rem;
+}
